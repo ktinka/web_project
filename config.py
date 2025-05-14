@@ -1,0 +1,3 @@
+BOT_TOKEN = "7612135160:AAGzxv-2MKfpoQWTwcNlxgtpES7E23GuGQc"
+
+textrazor_api_key = 'c2ef32a610281a88a207e5305c055105af7df8bf5f54c1383f8f1602'
