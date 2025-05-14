@@ -29,4 +29,7 @@ https://glitch.com/~entrance-to-the-dungeons
 Ну класс только один…   
 В characters_table.py класс Character для описания таблицы в базе данных.   
 
-Всё остальное - различные файлы с функциями.
+Всё содержимое папок data и db, а также файл search_characters.py относятся к бд.   
+В config.py хранятся token и api_key.   
+server.py - основной запускаемый файл программы.
+
