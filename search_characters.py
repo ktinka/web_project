@@ -3,7 +3,6 @@ from data import db_session
 from data.characters_table import Character
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
 def search_characters(user_id):
@@ -36,6 +35,13 @@ def out_beautify_all(character_info):
             f"\nПредыстория: {character_info["Предыстория"]} \n")
 
 
+def out_chars_without_mod(chars):
+    line = ""
+    for key, value in chars.items():
+        line += f"{key}: {value[0]} \n"
+    return line
+
+
 def calculate_mod(n):
     mod = (n - 10) // 2
     return mod
@@ -51,8 +57,9 @@ def save_character(user_id, c_name, c_class, c_race, c_characteristics, c_about)
     ch1.c_name = c_name
     ch1.c_class = c_class
     ch1.c_race = c_race
-    ch1.c_characteristics = ";".join(char_list) # отдельная функция
+    ch1.c_characteristics = ";".join(char_list)  # отдельная функция
     ch1.c_about = c_about
     db_sess = db_session.create_session()
     db_sess.add(ch1)
     db_sess.commit()
+
