@@ -8,7 +8,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder, InlineKeyboardMarkup, 
 from config import BOT_TOKEN
 from info import classes_info, races_info
 
-from search_characters import search_characters, out_beautify_all, save_character
+from search_characters import search_characters, out_beautify_all, save_character, out_chars_without_mod
 
 start_keyboard = [[KeyboardButton(text='Правила игры'), KeyboardButton(text='Создать персонажа')],
                   [KeyboardButton(text="Мои персонажи")], [KeyboardButton(text="Хватит")]]
@@ -239,7 +239,8 @@ async def c_chars(message: types.Message):
     if len(c_char_growth) == 6:
         for char_i in range(len(c_char_growth)):
             c_info["characteristics"][c_char_growth[char_i]] = [char_values[char_i]]
-        await message.reply(f"Ваши характеристики: {c_info["characteristics"]}", reply_markup=save_kb)
+        await message.reply(f"Ваши характеристики: \n{out_chars_without_mod(c_info["characteristics"])}",
+                            reply_markup=save_kb)
 
 
 @dp.message()
@@ -260,3 +261,4 @@ async def story(message: Message):
 
 if __name__ == '__main__':
     asyncio.run(main())
+
