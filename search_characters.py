@@ -19,20 +19,40 @@ def search_characters(user_id):
     return characters_info
 
 
-def out_beautify(character_info):
+def out_beautify_char(chars):
+    return (f"\n\tСила: {chars[0]}; Модификатор: {calculate_mod(int(chars[0]))} \n"
+            f"\tТелосложение: {chars[1]}; Модификатор: {calculate_mod(int(chars[1]))} \n"
+            f"\tЛовкость: {chars[2]}; Модификатор: {calculate_mod(int(chars[2]))} \n"
+            f"\tИнтеллект: {chars[3]}; Модификатор: {calculate_mod(int(chars[3]))} \n"
+            f"\tМудрость: {chars[4]}; Модификатор: {calculate_mod(int(chars[4]))} \n"
+            f"\tХаризма: {chars[5]}; Модификатор: {calculate_mod(int(chars[5]))}")
+
+
+def out_beautify_all(character_info):
     return (f"Имя: {character_info["Имя"]} \n"
-            f"Класс: {character_info["Класс"]} \n"
-            f"Раса: {character_info["Раса"]} \n"
-            f"Характеристики: {character_info["Характеристики"]} \n"
-            f"Предыстория: {character_info["Предыстория"]} \n")
+            f"\nКласс: {character_info["Класс"]} \n"
+            f"\nРаса: {character_info["Раса"]} \n"
+            f"\nХарактеристики: {out_beautify_char(character_info["Характеристики"].split(";"))} \n"
+            f"\nПредыстория: {character_info["Предыстория"]} \n")
 
-def main():
+
+def calculate_mod(n):
+    mod = (n - 10) // 2
+    return mod
+
+
+def save_character(user_id, c_name, c_class, c_race, c_characteristics, c_about):
+    char_list = []
+    for key, value in c_characteristics.items():
+        char_list.append(str(value[0]))
     db_session.global_init("db/characters.db")
-    # app.run()
-    """db_sess = db_session.create_session()
+    ch1 = Character()
+    ch1.user_id = user_id
+    ch1.c_name = c_name
+    ch1.c_class = c_class
+    ch1.c_race = c_race
+    ch1.c_characteristics = ";".join(char_list) # отдельная функция
+    ch1.c_about = c_about
+    db_sess = db_session.create_session()
     db_sess.add(ch1)
-    db_sess.commit()"""
-
-
-if __name__ == '__main__':
-    main()
+    db_sess.commit()
