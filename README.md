@@ -7,6 +7,15 @@
 Рахимова Шокира;   
 Ник в GitHub: ktinka
 
+## Ссылка на бота   
+
+https://t.me/dungeons_dnd_help_bot   
+
+
+## Username
+
+@dungeons_dnd_help_bot
+   
 ## Суть
 
 Проект представляет собой телаграмм-бот для составления листа персонажа d&d. (с использованием aiogram)
